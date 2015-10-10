@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: Gregory Shulov
+  description: Share HTPC Media Folders over NFS, Cifs and AFP
+  license: BSD
+  min_ansible_version: 1.2
+  platforms:
+  - name: Ubuntu
+    versions:
+    - trusty
+  categories:
+  - system
+dependencies:
+- GR360RY.htpc-user
+- GR360RY.htpc-media
