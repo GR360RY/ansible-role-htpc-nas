@@ -3,7 +3,7 @@ galaxy_info:
   author: Gregory Shulov
   description: Share HTPC Media Folders over NFS, Cifs and AFP
   license: BSD
-  min_ansible_version: 1.2
+  min_ansible_version: 1.6
   platforms:
   - name: Ubuntu
     versions:
@@ -12,4 +12,3 @@ galaxy_info:
   - system
 dependencies:
 - GR360RY.htpc-user
-- GR360RY.htpc-media
