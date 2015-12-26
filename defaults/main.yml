@@ -1,3 +1,7 @@
 ---
 # defaults file for htpc-nas
-xbmc_nas_enabled: True
+# xbmc_nas_enabled: True
+
+htpc_nas_nfs: True
+htpc_nas_cifs: True
+htpc_nas_afp: True

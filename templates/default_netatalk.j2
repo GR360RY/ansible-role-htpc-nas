@@ -1,0 +1,17 @@
+# Defaults for netatalk initscript
+# sourced by /etc/init.d/netatalk
+# installed at /etc/default/netatalk by the maintainer scripts
+
+#
+# This is a POSIX shell fragment
+#
+
+# Change to 0 to disable daemon
+ENABLE_DAEMON=1
+CONFIG_FILE="/etc/netatalk/afp.conf"
+
+# Default options for daemon
+OPTIONS="-F $CONFIG_FILE"
+
+# (optional) extra options to start-stop-daemon
+#START_STOP_OPTIONS="--iosched idle --nicelevel 10"

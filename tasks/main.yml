@@ -3,26 +3,90 @@
 
 - name: Install NFS Server
   apt: name=nfs-kernel-server state=installed update_cache=yes cache_valid_time=3600
+  when: htpc_nas_nfs
+  tags:
+    - nfs
 
-- name: Define NFS shares in /etc/exports
-  lineinfile: dest=/etc/exports regexp='^{{ htpc_media_path }}' line='{{ htpc_media_path }} *(rw,insecure)'
+- name: Configure NFS shares in /etc/exports
+  lineinfile: dest=/etc/exports regexp='^{{ htpc_media_path }}' line='{{ htpc_media_path }} *(rw,insecure,all_squash,anonuid={{ htpc_user_uid }},anongid={{ htpc_user_gid }})'
+  when: htpc_nas_nfs
   notify:
     - update nfs exports
-
-- name: Make sure media path is created
-  file: path={{ htpc_media_path }} state=directory owner={{ htpc_user_username }} group={{ htpc_user_username }} mode=0755
+  tags:
+    - nfs
 
 - name: Make sure NFS server is started on boot
   service: name=nfs-kernel-server state=started enabled=yes
+  when: htpc_nas_nfs
+  tags:
+    - nfs
 
 - name: Install SAMBA server
   apt: name=samba state=installed update_cache=yes cache_valid_time=3600
+  when: htpc_nas_cifs
+  tags:
+    - cifs
 
 - name: Update SAMBA configuration
   template: src=smb.conf dest=/etc/samba/smb.conf owner=root group=root
+  when: htpc_nas_cifs
   notify:
     - create samba users
     - restart samba
+  tags:
+    - cifs
 
 - name: Make sure SAMBA server is started on boot
   service: name=samba state=started enabled=yes
+  when: htpc_nas_cifs
+  tags:
+    - cifs
+
+- name: Add Netatalk Ubuntu Repository
+  apt_repository: repo=ppa:igoritl/netatalk state=present update_cache=yes
+  when: htpc_nas_afp
+  tags:
+    - afp
+
+- name: Install Netatalk
+  apt: name=netatalk state=present
+  when: htpc_nas_afp
+  tags:
+    - afp
+
+- name: Update Netatalk Config
+  template: src=afp.conf.j2 dest=/etc/netatalk/afp.conf owner=root group=root mode=0644 backup=yes
+  when: htpc_nas_afp
+  notify:
+    - restart netatalk
+  tags:
+    - afp
+
+- name: Enable Netatalk in /etc/default/netatalk
+  template: src=default_netatalk.j2 dest=/etc/default/netatalk owner=root group=root mode=644
+  when: htpc_nas_afp
+  notify:
+    - restart netatalk
+  tags:
+    - afp
+
+
+- name: Update Avahi Config
+  template: src=afpd.service.j2 dest=/etc/avahi/services/afpd.service owner=root group=root mode=0644 backup=yes
+  when: htpc_nas_afp
+  notify:
+    - restart avahi
+  tags:
+    - afp
+
+- name: Enable Netatalk Service
+  service: name=netatalk state=started enabled=yes
+  when: htpc_nas_afp
+  tags:
+    - afp
+
+- name: Enable Avahi Service
+  service: name=avahi-daemon state=started enabled=yes
+  when: htpc_nas_afp
+  tags:
+    - afp

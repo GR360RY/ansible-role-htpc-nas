@@ -2,7 +2,7 @@ htpc-nas
 ===========
 <!-- [![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.htpc--nas-green.svg?style=flat-square)](https://galaxy.ansible.com/list#/roles/) -->
 
-An Ansible role to setup and configure NAS functionality ( NFS, CIFS and AFP ) for HTPC Server under Debian based distro's.
+An Ansible role to setup and configure NAS functionality ( NFS, CIFS and AFP ) for HTPC Server under Ubuntu.
 
 Requirements
 ------------
