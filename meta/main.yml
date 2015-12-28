@@ -12,3 +12,4 @@ galaxy_info:
   - system
 dependencies:
 - GR360RY.htpc-user
+- GR360RY.htpc-media
