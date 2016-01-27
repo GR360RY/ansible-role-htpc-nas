@@ -5,7 +5,6 @@
   command: /usr/sbin/exportfs -a
 
 - name: create samba users
-  sudo: yes
   shell: (echo "{{ htpc_user_password }}"; echo "{{ htpc_user_password }}") | smbpasswd -s -a {{ htpc_user_username }}
 
 - name: restart samba
