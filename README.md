@@ -7,8 +7,8 @@ An Ansible role to setup and configure NAS functionality ( NFS, CIFS and AFP ) f
 Requirements
 ------------
 
-This role requires Ansible 1.6 or higher. Platform requirements are listed in the metadata file.
-
+This role requires Ansible 2.0 or higher. Platform requirements are listed in the metadata file.
+Make sure to download roles specified in **Dependencies** section if role installed **not** with Ansible Galaxy.
 
 Overview
 --------
@@ -21,18 +21,31 @@ Role Variables
 Dependencies
 ------------
 
- Role Name| Description
+Role Name | Description
 ----------|-----------
-[![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.htpc--user-blue.svg?style=flat-square)](https://galaxy.ansible.com/list#/roles/4645) | Create htpc user on Linux.
+[![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.htpc--common-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/htpc-common/)| Create htpc user and media folders|
 
-Variables defined in `GR360RY.htpc-user` role:
+Variables defined in `htpc-common` role:
 
- GR360RY.htpc-user        | Required   | Default       | Comment          
---------------------------|:----------:|---------------|---------
- htpc_user_username       | no         | htpc          |
- htpc_user_password       | no         | htpc          |
- htpc_user_shell          | no         | /bin/bash     |
- htpc_user_sudo_access    | no         | yes           |
+```
+# defaults file for htpc-common
+
+htpc_user_username: htpc
+htpc_user_password: htpc
+htpc_user_group: htpc
+htpc_user_shell: /bin/bash
+htpc_user_sudo_access: yes
+htpc_ssh_service: yes
+htpc_create_media_folders: yes
+htpc_zeroconf: yes
+htpc_media_path: /mnt/media
+htpc_media_movies: movies
+htpc_media_tv: tv
+htpc_media_music: music
+htpc_media_pictures: pictures
+htpc_downloads_complete: "{{ htpc_media_path }}/downloads/complete"
+htpc_downloads_incomplete: "{{ htpc_media_path }}/downloads/incomplete"
+```
 
 HTPC-Ansible Project
 --------------------
