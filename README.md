@@ -1,6 +1,6 @@
 htpc-nas
 ===========
-<!-- [![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.htpc--nas-green.svg?style=flat-square)](https://galaxy.ansible.com/list#/roles/) -->
+[![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.htpc--nas-green.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/htpc-nas/)
 
 An Ansible role to setup and configure NAS functionality ( NFS, CIFS and AFP ) for HTPC Server under Ubuntu.
 
@@ -13,19 +13,43 @@ Make sure to download roles specified in **Dependencies** section if role instal
 Overview
 --------
 
+List of tasks that will be performed under `htpc-nas` role:
+
+1. Configure NFS Server. Squash all users to `htpc_user_username` uid
+2. Configure SAMBA Server. Create `htpc_user_username` samba identified by `htpc_user_password`
+3. Configure AFP ( Netatalk ) server for sharing data with Macs.
+
+Folders layout if used with default variable values:
+
+```
+/mnt/media/            # Path to share over NFS,CIFS and AFP
+├── downloads               
+│   ├── complete
+│   └── incomplete
+├── movies
+├── music
+├── pictures
+└── tv
+```
 
 Role Variables
 --------------
 
+```
+---
+# defaults file for htpc-nas
+
+htpc_nas_enabled: yes
+
+htpc_nas_nfs: yes
+htpc_nas_cifs: yes
+htpc_nas_afp: yes
+```
 
 Dependencies
 ------------
 
-Role Name | Description
-----------|-----------
-[![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.htpc--common-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/htpc-common/)| Create htpc user and media folders|
-
-Variables defined in `htpc-common` role:
+* `GR360RY.htpc-common` role. Creates htpc user and media folders
 
 ```
 # defaults file for htpc-common
@@ -52,23 +76,21 @@ HTPC-Ansible Project
 
 This role is part of HTPC-Ansible project that includes additional roles for building Ubuntu Based HTPC Server.
 
- Role name               | Comment
--------------------------|-----------------------------
-[![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.htpc--common-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/htpc-common)   | Create htpc user and media folders
-[![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.htpc--nas-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/htpc-nas)         | Configure NAS ( NFS, CIFS and AFP )
-[![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.kodi--client-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/kodi-client)   | Install Kodi Media Player
-[![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.kodi--mysql-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/kodi-mysql)     | Install MySQL Backend for Kodi
-[![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.deluge-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/deluge)              | Install Deluge Bittornet Client
-[![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.nzbtomedia-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/nzbtomedia)      | Install NZBtoMedia Postprocessing
-[![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.sickrage-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/sickrage)          | Install SickRage
-[![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.couchpotato-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/couchpotato)    | Install CouchPotato
-[![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.htpc--manager-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/htpc-manager) | Install htpc-manager
-<!-- 
-[![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.sabnzbd-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/sabnzbd)            | Install Sabnzbd
-[![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.tvheadend-blue.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/tvheadend)        | Install Tvheadend
+Complete list of Ansible Galaxy roles is below:
+
+- [`GR360RY.htpc-common`](https://galaxy.ansible.com/GR360RY/htpc-common) - Create htpc user and media folders
+- [`GR360RY.htpc-nas`](https://galaxy.ansible.com/GR360RY/htpc-nas) - Configure NAS ( NFS, CIFS and AFP )
+- [`GR360RY.kodi-client`](https://galaxy.ansible.com/GR360RY/kodi-client) - Install Kodi Media Player
+- [`GR360RY.kodi-mysql`](https://galaxy.ansible.com/GR360RY/kodi-mysql) - Install MySQL Backend for Kodi
+- [`GR360RY.deluge`](https://galaxy.ansible.com/GR360RY/deluge) - Install Deluge Bittornet Client
+- [`GR360RY.sabnzbd`](https://galaxy.ansible.com/GR360RY/sabnzbd) - Install Sabnzbd Usenet Client
+- [`GR360RY.nzbtomedia`](https://galaxy.ansible.com/GR360RY/nzbtomedia) - Install NZBtoMedia Postprocessing
+- [`GR360RY.sickrage`](https://galaxy.ansible.com/GR360RY/sickrage) - Install SickRage
+- [`GR360RY.couchpotato`](https://galaxy.ansible.com/GR360RY/couchpotato) - Install CouchPotato
+- [`GR360RY.htpc-manager`](https://galaxy.ansible.com/GR360RY/htpc-manager) - Install HTPCManager
 
 Additional Info is available at [www.htpc-ansible.org](http://www.htpc-ansible.org)
- -->
+
 License
 -------
 
