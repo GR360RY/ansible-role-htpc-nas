@@ -1,6 +1,6 @@
 htpc-nas
 ===========
-[![Build Status](https://travis-ci.org/GR360RY/ansible-role-htpc-common.svg?branch=master)](https://travis-ci.org/GR360RY/ansible-role-htpc-common) [![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.htpc--nas-green.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/htpc-nas/)
+[![Build Status](https://travis-ci.org/GR360RY/ansible-role-htpc-nas.svg?branch=master)](https://travis-ci.org/GR360RY/ansible-role-htpc-nas) [![Galaxy](http://img.shields.io/badge/galaxy-GR360RY.htpc--nas-green.svg?style=flat-square)](https://galaxy.ansible.com/GR360RY/htpc-nas/)
 
 An Ansible role to setup and configure NAS functionality ( NFS, CIFS and AFP ) for HTPC Server under Ubuntu.
 
