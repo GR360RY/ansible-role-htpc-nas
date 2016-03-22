@@ -17,7 +17,7 @@ install:
   # Install ansible
   - pip install ansible
 
-  # Check ansible version
+  # Check ansible version .
   - ansible --version
 
   # Create ansible.cfg with correct roles_path
